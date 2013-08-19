@@ -14,14 +14,12 @@ table = collections.OrderedDict(
     ])
 
 
-def convert_arabics(arabic):
+def convert_to_arabic(value):
+
     converted = ""
-
-    value = arabic
-
     temp = ""
     previous = ""
-    older = ""
+
     for num in table.keys():
 
         while value >= num:
@@ -33,11 +31,10 @@ def convert_arabics(arabic):
 
             if converted is not "" and converted[-1] == temp[-1]:
                 converted = converted[:-1]
-                temp = table[num] + table[older]
+                temp = table[num] + table[2 * previous]
 
         converted = converted + temp
         temp = ""
-        older = previous
         previous = num
 
     return converted
